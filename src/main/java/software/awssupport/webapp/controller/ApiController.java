@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiController {
 
+    /**
+     *  It return home with API from request
+     * @param apiname
+     * @return
+     */
     @PostMapping(value = "/api")
     public String registerAPI(@RequestBody MultiValueMap apiname){
 

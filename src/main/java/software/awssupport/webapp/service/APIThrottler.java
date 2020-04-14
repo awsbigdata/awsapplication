@@ -28,11 +28,16 @@ public class APIThrottler implements Throttler  {
 
 
     // Container for keeping track of all provisioned rate limits.
+    // We can change to redis for distributed approach
     private ConcurrentHashMap<String, RateLimit> rateLimitMap = new ConcurrentHashMap<String, RateLimit>();
 
     // Thread pool initialization to remove old api's to clean up
     private ExecutorService threadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
+    /**
+     *  Create a new bucket if it is new API
+     * @param apiname
+     */
     public void provisionRateLimit(String apiname)
     {
 
@@ -40,7 +45,8 @@ public class APIThrottler implements Throttler  {
 
         rateLimitMap.put(apiname,rateLimit);
     }
-    // To remove a rate limit policy
+
+    // To remove a rate limit policy to claim cache space.
     public void deProvisionRateLimit (String instance_id)
     {
         try

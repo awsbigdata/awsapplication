@@ -18,7 +18,8 @@ public class RateLimit {
     private long lastRefillTimestamp;
 
     /**
-     * Creates token-bucket with specified capacity and refill rate equals to refillTokens/refillPeriodMillis
+     * Creates token-bucket with specified capacity and refill rate equals to refillTokens
+     * @TODO Change the design to refil at millseconds
      */
     public RateLimit(long capacity, long refillTokens) {
         this.capacity = capacity;
